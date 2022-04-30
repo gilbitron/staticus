@@ -5,3 +5,7 @@
 .formatted {
     @apply prose md:prose-lg max-w-none md:max-w-none dark:prose-invert;
 }
+
+pre code.hljs {
+    @apply bg-transparent !p-2;
+}

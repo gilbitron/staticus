@@ -1,8 +1,0 @@
-/cache/*
-!/cache/.gitkeep
-/dist
-/node_modules
-/vendor
-composer.dev.*
-package-lock.json
-yarn.lock

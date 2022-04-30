@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pages - Staticus</title>
+
+    <link rel="stylesheet" href="/assets/main.css">
+</head>
+
+<body class="dark:bg-gray-900">
+    <div class="max-w-5xl mx-auto px-6">
+        <header
+            class="flex items-center justify-between py-6 border-b border-gray-200 dark:text-white dark:border-gray-700">
+            <a href="/" class="text-3xl font-bold">Staticus</a>
+            <nav>
+                <ul class="flex items-center space-x-6">
+                    <li><a href="/docs/installation">Docs</a></li>
+                    <li>
+                        <a href="https://github.com/gilbitron/staticus" target="_blank">
+                            <svg class="w-6 h-6" role="img" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>GitHub</title>
+                                <path
+                                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                            </svg>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="py-12">
+                <div class="md:flex">
+        <div class="md:w-1/4 mb-12">
+            <h3 class="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-2">Getting Started</h3>
+                        <ul>
+                                    <li class="doc-installation mb-1">
+                        <a href="/docs/installation" class="hover:underline">Installation</a>
+                    </li>
+                                    <li class="doc-build-site mb-1">
+                        <a href="/docs/build-site" class="hover:underline">Build Site</a>
+                    </li>
+                                    <li class="doc-compile-assets mb-1">
+                        <a href="/docs/compile-assets" class="hover:underline">Compile Assets</a>
+                    </li>
+                                    <li class="doc-deploy-site mb-1">
+                        <a href="/docs/deploy-site" class="hover:underline">Deploy Site</a>
+                    </li>
+                            </ul>
+
+            <h3 class="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-2 mt-10">Creating Content</h3>
+                        <ul>
+                                    <li class="doc-pages mb-1">
+                        <a href="/docs/pages" class="hover:underline">Pages</a>
+                    </li>
+                                    <li class="doc-collections mb-1">
+                        <a href="/docs/collections" class="hover:underline">Collections</a>
+                    </li>
+                                    <li class="doc-templates mb-1">
+                        <a href="/docs/templates" class="hover:underline">Templates</a>
+                    </li>
+                            </ul>
+        </div>
+        <div class="md:w-3/4">
+            <div class="formatted">
+                <h1>Pages</h1>
+                <div>
+                    <p>There are two ways to create content in Staticus:</p>
+<ol>
+<li>Using Blade templates</li>
+<li>Using collections of Markdown files</li>
+</ol>
+<p>All pages and <a href="/docs/collections">collections</a> (e.g. blog posts) are defined in <code>config.php</code>:</p>
+<pre><code class="language-php">use Staticus\Compilers\MarkdownCompiler;
+use Staticus\Page;
+
+return [
+    'content' =&gt; [
+        'index' =&gt; new Page([
+            'title' =&gt; 'Staticus',
+        ]),
+        'docs' =&gt; (new MarkdownCompiler('/docs/{slug}', __DIR__ . '/content/docs'))
+            -&gt;getContent()
+            -&gt;sortByFrontMatter('sort', 'asc'),
+    ],
+];</code></pre>
+<h2>Creating pages</h2>
+<p>A page can be created by adding a new key to the <code>content</code> array:</p>
+<pre><code class="language-php">use Staticus\Page;
+
+return [
+    'content' =&gt; [
+        // ...
+        'about' =&gt; new Page([
+            'title' =&gt; 'About Me',
+            'path'  =&gt; 'about',
+        ]),
+    ],
+];</code></pre>
+<p>The array key of the page corresponds to the name of the Blade template that will be used to generate the page content (e.g. <code>about.blade.php</code>). A page should always have a <code>title</code> and a <code>path</code>. The path determines the URL of the page. For example, a path of <code>docs/intro</code> will appear at the URL <code>https://example.com/docs/intro</code>.</p>
+<p>Additional data can be passed to the Blade template by passing a <code>frontMatter</code> array to the page.</p>
+<pre><code class="language-php">'about' =&gt; new Page([
+    'title' =&gt; 'About Me',
+    'path'  =&gt; 'about',
+    'fontMatter' =&gt; [
+        'subtitle' =&gt; 'An example subtitle...',
+    ],
+]),</code></pre>
+<p>Then in the Blade template, the data can be accessed via <code>$page-&gt;getFrontMatter('subtitle')</code>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/styles/atom-one-dark.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+        </div>
+    </div>
+</body>
+
+</html>

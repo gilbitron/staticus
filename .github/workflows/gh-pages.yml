@@ -15,8 +15,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 14
+      - run: composer install
       - name: Build
-        run: composer install && php staticus build
+        run: php staticus build
       - name: Compile assets
         run: yarn && yarn prod
       - name: Deploy

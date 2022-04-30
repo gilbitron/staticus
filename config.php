@@ -9,12 +9,8 @@ return [
         'index' => new Page([
             'title' => 'Staticus',
         ]),
-        'about' => new Page([
-            'path' => 'about',
-            'title' => 'About',
-        ]),
-        'posts' => (new MarkdownCompiler('/blog/{slug}', __DIR__ . '/content/posts'))
+        'docs' => (new MarkdownCompiler('/docs/{slug}', __DIR__ . '/content/docs'))
             ->getContent()
-            ->sortByFrontMatter('date', 'desc'),
+            ->sortByFrontMatter('sort', 'asc'),
     ],
 ];

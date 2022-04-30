@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.formatted {
+    @apply prose md:prose-lg max-w-none md:max-w-none dark:prose-invert;
+}

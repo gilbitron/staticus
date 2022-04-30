@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 14
       - name: Build
-        run: ./staticus build
+        run: php staticus build
       - name: Compile assets
         run: yarn && yarn prod
       - name: Deploy

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', $page->title)
+@section('title', 'Staticus - A static site generator in PHP powered by Laravel Blade')
 
 @section('content')
     <div class="formatted">

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="md:flex">
-        <div class="md:w-1/4 mb-12">
+        <div class="md:w-1/4 mb-12 dark:text-white">
             <h3 class="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-2">Getting Started</h3>
             @php
                 $gettingStarted = $config['content']['docs']

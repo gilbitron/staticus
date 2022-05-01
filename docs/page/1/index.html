@@ -19,8 +19,8 @@
                 <ul class="flex items-center space-x-6">
                     <li><a href="/docs/installation">Docs</a></li>
                     <li>
-                        <a href="https://github.com/gilbitron/staticus" target="_blank">
-                            <svg class="w-6 h-6" role="img" viewBox="0 0 24 24"
+                        <a href="https://github.com/gilbitron/staticus" target="_blank" class="dark:text-white">
+                            <svg class="w-6 h-6 fill-current" role="img" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <title>GitHub</title>
                                 <path

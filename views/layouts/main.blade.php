@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', $page->title . ' - ' . $config['siteTitle'])</title>
+    <title>@yield('title', $page->title . ' - ' . $staticus->config('siteTitle'))</title>
 
-    <link rel="stylesheet" href="/assets/main.css">
+    <link rel="stylesheet" href="{{ $staticus->asset('assets/main.css') }}">
+
+    @if ($staticus->environment() === 'production')
+        {!! $staticus->config('analyticsScript') !!}
+    @endif
 </head>
 
 <body class="dark:bg-gray-900">

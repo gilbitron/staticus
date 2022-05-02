@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "927caadbd1d62bce83dbd8ebba9e8723",
+    "content-hash": "ae567bc1473c7e91180820d2ae14b955",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -148,21 +148,72 @@
             "time": "2019-12-30T22:54:17+00:00"
         },
         {
-            "name": "gilbitron/staticus-framework",
-            "version": "0.1.0",
+            "name": "erusev/parsedown-extra",
+            "version": "0.8.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/gilbitron/staticus-framework.git",
-                "reference": "b318c1c8807883c49b61fcf7e9b20cdf4bfff4ae"
+                "url": "https://github.com/erusev/parsedown-extra.git",
+                "reference": "91ac3ff98f0cea243bdccc688df43810f044dcef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gilbitron/staticus-framework/zipball/b318c1c8807883c49b61fcf7e9b20cdf4bfff4ae",
-                "reference": "b318c1c8807883c49b61fcf7e9b20cdf4bfff4ae",
+                "url": "https://api.github.com/repos/erusev/parsedown-extra/zipball/91ac3ff98f0cea243bdccc688df43810f044dcef",
+                "reference": "91ac3ff98f0cea243bdccc688df43810f044dcef",
                 "shasum": ""
             },
             "require": {
-                "erusev/parsedown": "^1.7",
+                "erusev/parsedown": "^1.7.4"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ParsedownExtra": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emanuil Rusev",
+                    "email": "hello@erusev.com",
+                    "homepage": "http://erusev.com"
+                }
+            ],
+            "description": "An extension of Parsedown that adds support for Markdown Extra.",
+            "homepage": "https://github.com/erusev/parsedown-extra",
+            "keywords": [
+                "markdown",
+                "markdown extra",
+                "parsedown",
+                "parser"
+            ],
+            "support": {
+                "issues": "https://github.com/erusev/parsedown-extra/issues",
+                "source": "https://github.com/erusev/parsedown-extra/tree/0.8.x"
+            },
+            "time": "2019-12-30T23:20:37+00:00"
+        },
+        {
+            "name": "gilbitron/staticus-framework",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gilbitron/staticus-framework.git",
+                "reference": "0e4d5bef8bd0605327d8141d2fb2936ef820ccab"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gilbitron/staticus-framework/zipball/0e4d5bef8bd0605327d8141d2fb2936ef820ccab",
+                "reference": "0e4d5bef8bd0605327d8141d2fb2936ef820ccab",
+                "shasum": ""
+            },
+            "require": {
+                "erusev/parsedown-extra": "^0.8.1",
                 "illuminate/collections": "^9",
                 "illuminate/filesystem": "^9",
                 "illuminate/support": "^9",
@@ -175,6 +226,9 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.8"
             },
+            "bin": [
+                "bin/staticus"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -182,6 +236,9 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "Gilbert Pellegrom",
@@ -191,9 +248,9 @@
             "description": "Staticus Framework",
             "support": {
                 "issues": "https://github.com/gilbitron/staticus-framework/issues",
-                "source": "https://github.com/gilbitron/staticus-framework/tree/0.1.0"
+                "source": "https://github.com/gilbitron/staticus-framework/tree/0.2.2"
             },
-            "time": "2022-04-29T16:20:26+00:00"
+            "time": "2022-05-02T14:03:15+00:00"
         },
         {
             "name": "illuminate/bus",

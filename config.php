@@ -1,16 +1,18 @@
 <?php
 
-use Staticus\Compilers\MarkdownCompiler;
+use Staticus\Compilers\MarkdownCollection;
 use Staticus\Page;
 
 return [
     'siteTitle' => 'Staticus',
+    'analyticsScript' => '',
     'content' => [
         'index' => new Page([
             'title' => 'Staticus',
         ]),
-        'docs' => (new MarkdownCompiler('/docs/{slug}', __DIR__ . '/content/docs'))
-            ->getContent()
+        'docs' => MarkdownCollection::create('/docs/{slug}')
+            ->fromMarkdownFiles(__DIR__ . '/content/docs')
+            ->fetchContent()
             ->sortByFrontMatter('sort', 'asc'),
     ],
 ];

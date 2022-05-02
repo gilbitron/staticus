@@ -6,6 +6,7 @@ mix
     .postCss('assets/main.css', 'dist/assets', [
         require('tailwindcss'),
     ])
+    .version()
     .browserSync({
         files: [
             'dist/**/*',
@@ -16,20 +17,18 @@ mix
                     'views/**/*'
                 ],
                 fn: function(event, file) {
-                    command.run('php staticus build', (error, stdout, stderr) => {
+                    command.run('npm run build', (error, stdout, stderr) => {
                         console.log(error ? stderr : stdout);
                     });
                 }
             }
         ],
-        callbacks: {
-            ready: function(err, bs) {
-                command.run('php staticus build', (error, stdout, stderr) => {
-                    console.log(error ? stderr : stdout);
-                });
-            }
-        },
         server: 'dist',
         notify: false,
         open: false,
+    })
+    .after(stats => {
+        command.run('npm run build' + (mix.inProduction() ? ' production' : ''), (error, stdout, stderr) => {
+            console.log(error ? stderr : stdout);
+        });
     });

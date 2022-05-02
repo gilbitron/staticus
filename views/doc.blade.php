@@ -5,7 +5,8 @@
         <div class="md:w-1/4 mb-12 dark:text-white">
             <h3 class="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-2">Getting Started</h3>
             @php
-                $gettingStarted = $config['content']['docs']
+                $gettingStarted = $staticus
+                    ->content('docs')
                     ->collection()
                     ->items->filter(function ($item) {
                         return $item->getFrontMatter('category') === 'getting-started';
@@ -22,7 +23,8 @@
 
             <h3 class="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-2 mt-10">Creating Content</h3>
             @php
-                $gettingStarted = $config['content']['docs']
+                $gettingStarted = $staticus
+                    ->content('docs')
                     ->collection()
                     ->items->filter(function ($item) {
                         return $item->getFrontMatter('category') === 'creating-content';
@@ -49,6 +51,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/styles/atom-one-dark.min.css">
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-blade/dist/blade.min.js"></script>
     <script>
         hljs.highlightAll();
     </script>

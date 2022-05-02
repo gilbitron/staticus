@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.page {
+    @apply px-6 sm:px-10 py-12 mt-16 max-w-4xl mx-auto;
+}
+
 .formatted {
-    @apply prose md:prose-lg max-w-none md:max-w-none dark:prose-invert;
+    @apply prose md:prose-lg max-w-none md:max-w-none prose-a:text-blue-600 dark:prose-invert;
 }
 
 pre code.hljs {

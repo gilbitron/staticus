@@ -18,8 +18,6 @@ jobs:
           node-version: 14
       - run: composer install
       - name: Build
-        run: php staticus build
-      - name: Compile assets
         run: yarn && yarn prod
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

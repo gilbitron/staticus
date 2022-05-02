@@ -7,8 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Compile Assets - Staticus</title>
 
-    <link rel="stylesheet" href="/assets/main.css">
-</head>
+    <link rel="stylesheet" href="/assets/main.css?id=2da982785d96f20fbc6938853c01f9cf">
+
+            <script src="https://cdn.usefathom.com/script.js" data-site="DRLHSQHZ" defer></script>
+    </head>
 
 <body class="dark:bg-gray-900">
     <div class="max-w-5xl mx-auto px-6">
@@ -49,6 +51,9 @@
                                     <li class="doc-deploy-site mb-1">
                         <a href="/docs/deploy-site" class="hover:underline">Deploy Site</a>
                     </li>
+                                    <li class="doc-environments mb-1">
+                        <a href="/docs/environments" class="hover:underline">Environments</a>
+                    </li>
                             </ul>
 
             <h3 class="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-2 mt-10">Creating Content</h3>
@@ -70,12 +75,12 @@
                 <div>
                     <p>Staticus use <a href="https://laravel-mix.com/">Laravel Mix</a> to compile JS &amp; CSS assets.</p>
 <p>To compile your project assets, first install the node dependencies:</p>
-<pre><code>npm install</code></pre>
+<pre><code class="language-text">npm install</code></pre>
 <p>Compile your JS and CSS by running:</p>
-<pre><code>npm run dev</code></pre>
+<pre><code class="language-text">npm run dev</code></pre>
 <h2>Watching for changes</h2>
 <p>To preview changes as you build your site run the NPM <code>watch</code> script:</p>
-<pre><code>npm run watch</code></pre>
+<pre><code class="language-text">npm run watch</code></pre>
 <p>This script uses Browsersync to run a development server at <code>http://localhost:3000</code> where any changes you make will be reflected in the browser.</p>
 <h2>Compiling for production</h2>
 <p>When it comes to deploying your site, you'll want to run the <code>prod</code> script to compile your assets for production:</p>
@@ -87,6 +92,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/styles/atom-one-dark.min.css">
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-blade/dist/blade.min.js"></script>
     <script>
         hljs.highlightAll();
     </script>

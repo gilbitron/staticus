@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pages - Staticus</title>
+    <title>Environments - Staticus</title>
 
     <link rel="stylesheet" href="/assets/main.css?id=2da982785d96f20fbc6938853c01f9cf">
 
@@ -71,31 +71,27 @@
         </div>
         <div class="md:w-3/4">
             <div class="formatted">
-                <h1>Pages</h1>
+                <h1>Environments</h1>
                 <div>
-                    <p>In Staticus, pages are created using Blade <a href="/docs/templates">templates</a> and are defined in <code>config.php</code>. A page can be created by adding a new key to the <code>content</code> array:</p>
-<pre><code class="language-php">use Staticus\Page;
-
+                    <p>Sometimes you need to generate different content in different environments (e.g. only including analytics scripts in a production environment). Staticus supports this by allowing you pass an environment name to the <code>build</code> command. This is already pre-configured for you in our NPM scripts:</p>
+<pre><code class="language-text">npm run dev   // environment: local
+npm run prod  // environment: production</code></pre>
+<p>Staticus uses the environment name to merge environment specific data into your <code>config.php</code>. For example, if a <code>config.production.php</code> file exists data from this file will be merged into the base config array if the site environment is <code>production</code>.</p>
+<pre><code class="language-php">// config.php
 return [
-    'content' =&gt; [
-        // ...
-        'about' =&gt; new Page([
-            'title' =&gt; 'About Me',
-            'path'  =&gt; 'about',
-        ]),
-    ],
+    'siteTitle' =&gt; 'Staticus',
+    'analyticsScript' =&gt; '',
+    // ...
+];
+
+// config.production.php
+return [
+    'analyticsScript' =&gt; '&lt;script&gt;...',
 ];</code></pre>
-<p>The array key of the page corresponds to the name of the Blade template that will be used to generate the page content (e.g. <code>about.blade.php</code>).</p>
-<p>A page should always have a <code>title</code> and a <code>path</code>. The path determines the URL of the page. For example, a path of <code>docs/intro</code> will appear at the URL <code>https://example.com/docs/intro</code>.</p>
-<p>Additional data can be passed to the Blade template by passing a <code>frontMatter</code> array to the page.</p>
-<pre><code class="language-php">'about' =&gt; new Page([
-    'title' =&gt; 'About Me',
-    'path'  =&gt; 'about',
-    'fontMatter' =&gt; [
-        'subtitle' =&gt; 'An example subtitle...',
-    ],
-]),</code></pre>
-<p>Then in the Blade template, the data can be accessed via <code>$page-&gt;getFrontMatter('subtitle')</code>.</p>
+<p>You can then check for the existence of this data in your <a href="/docs/templates">templates</a>:</p>
+<pre><code class="language-php">@if ($staticus-&gt;config('analyticsScript'))
+    {!! $staticus-&gt;config('analyticsScript') !!}
+@endif</code></pre>
                 </div>
             </div>
         </div>

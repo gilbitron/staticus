@@ -7,8 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Templates - Staticus</title>
 
-    <link rel="stylesheet" href="/assets/main.css">
-</head>
+    <link rel="stylesheet" href="/assets/main.css?id=2da982785d96f20fbc6938853c01f9cf">
+
+            <script src="https://cdn.usefathom.com/script.js" data-site="DRLHSQHZ" defer></script>
+    </head>
 
 <body class="dark:bg-gray-900">
     <div class="max-w-5xl mx-auto px-6">
@@ -49,6 +51,9 @@
                                     <li class="doc-deploy-site mb-1">
                         <a href="/docs/deploy-site" class="hover:underline">Deploy Site</a>
                     </li>
+                                    <li class="doc-environments mb-1">
+                        <a href="/docs/environments" class="hover:underline">Environments</a>
+                    </li>
                             </ul>
 
             <h3 class="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-2 mt-10">Creating Content</h3>
@@ -83,7 +88,7 @@
 </ul>
 <h2>Pagination</h2>
 <p>Collection archive pages have a <code>$pagination</code> object injected into them:</p>
-<pre><code class="language-php">&lt;ul&gt;
+<pre><code class="language-blade">&lt;ul&gt;
     @foreach ($pagination-&gt;items as $post)
         &lt;li&gt;&lt;a href="/{{ $post-&gt;path }}"&gt;{{ $post-&gt;title }}&lt;/a&gt;&lt;/li&gt;
     @endforeach
@@ -117,8 +122,33 @@
 <li><code>nextPagePath</code> - The path for the next page (e.g. <code>posts/page/2</code>)</li>
 <li><code>prevPagePath</code> - The path for the previous page (e.g. <code>posts/page/8</code>)</li>
 </ul>
-<h2>Config object</h2>
-<p>Every page will also have a <code>$config</code> object injected into it that contains the array of data from <code>config.phg</code>.</p>
+<h2>Staticus object</h2>
+<p>Every page will also have a <code>$staticus</code> object injected into it that can be used to access helpful information.</p>
+<pre><code class="language-php">// Get the current environment
+$staticus-&gt;environment()
+
+// Get config values
+$staticus-&gt;config('siteTitle')
+
+// Get content data
+$staticus
+    -&gt;content('posts')
+    -&gt;collection()
+    -&gt;all();</code></pre>
+<h2>Assets</h2>
+<p>Compiled assets can be included in your templates using the <code>$staticus-&gt;asset()</code> method:</p>
+<pre><code class="language-blade">&lt;link rel="stylesheet" href="{{ $staticus-&gt;asset('assets/main.css') }}"&gt;</code></pre>
+<p>This method ensures that assets are cache-busted when they have been updated.</p>
+<h2>Global data</h2>
+<p>Any data included in your <code>config.php</code> will be globally available to all pages via <code>$staticus-&gt;config()</code>.</p>
+<pre><code>// config.php
+return [
+    'siteTitle' =&gt; 'Staticus',
+    // ...
+];
+
+// In pages
+{{ $staticus-&gt;config('siteTitle') }}</code></pre>
                 </div>
             </div>
         </div>
@@ -126,6 +156,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/styles/atom-one-dark.min.css">
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-blade/dist/blade.min.js"></script>
     <script>
         hljs.highlightAll();
     </script>

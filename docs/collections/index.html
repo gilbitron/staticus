@@ -7,8 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Collections - Staticus</title>
 
-    <link rel="stylesheet" href="/assets/main.css">
-</head>
+    <link rel="stylesheet" href="/assets/main.css?id=2da982785d96f20fbc6938853c01f9cf">
+
+            <script src="https://cdn.usefathom.com/script.js" data-site="DRLHSQHZ" defer></script>
+    </head>
 
 <body class="dark:bg-gray-900">
     <div class="max-w-5xl mx-auto px-6">
@@ -49,6 +51,9 @@
                                     <li class="doc-deploy-site mb-1">
                         <a href="/docs/deploy-site" class="hover:underline">Deploy Site</a>
                     </li>
+                                    <li class="doc-environments mb-1">
+                        <a href="/docs/environments" class="hover:underline">Environments</a>
+                    </li>
                             </ul>
 
             <h3 class="text-sm text-gray-500 font-semibold uppercase tracking-wide mb-2 mt-10">Creating Content</h3>
@@ -68,33 +73,42 @@
             <div class="formatted">
                 <h1>Collections</h1>
                 <div>
-                    <p>Out of the box, Staticus supports collections of Markdown files. Technically, these can be placed anywhere but we recommend putting them in the <code>/content</code> folder (e.g. <code>/content/posts</code>).</p>
-<p>Like pages, collections must be added to the <code>content</code> array in <code>config.php</code>:</p>
-<pre><code class="language-php">use Staticus\Compilers\MarkdownCompiler;
+                    <p>Out of the box, Staticus supports collections of Markdown files. Technically, these can be placed anywhere but we recommend putting your markdown files in the <code>/content</code> folder (e.g. <code>/content/posts</code>).</p>
+<p>Like <a href="/docs/pages">pages</a>, collections must be added to the <code>content</code> array in <code>config.php</code>:</p>
+<pre><code class="language-php">use Staticus\Compilers\MarkdownCollection;
 
 return [
     'content' =&gt; [
         // ...
-        'posts' =&gt; (new MarkdownCompiler('/blog/{slug}', __DIR__ . '/content/posts'))
-            -&gt;getContent(),
+        'posts' =&gt; MarkdownCollection::create('/blog/{slug}')
+            -&gt;fromMarkdownFiles(__DIR__ . '/content/posts')
+            -&gt;fetchContent(),
     ],
 ];</code></pre>
-<p>The array key of the collection corresponds to the name of the Blade template that will be used to generate the page content (e.g. <code>posts.blade.php</code> for archive pages and the singular <code>post.blade.php</code> for single entries).</p>
-<p><code>MarkdownCompiler</code> takes two arguments:</p>
-<ol>
-<li>The path used to generate the URLs for the collection. The <code>{slug}</code> will be replaced by the filename of the markdown file (without the <code>.md</code> extension).</li>
-<li>The absolute path to the folder containing the markdown files.</li>
-</ol>
-<p>Entries can be sorted by some value that exists in the Markdown front matter. For example, a <code>date</code>:</p>
-<pre><code class="language-php">'posts' =&gt; (new MarkdownCompiler('/blog/{slug}', __DIR__ . '/content/posts'))
-    -&gt;getContent()
+<p>The <code>MarkdownCollection::create()</code> method takes the path used to generate the URLs for the collection as an argument. The <code>{slug}</code> will be replaced by the filename of the markdown file (without the <code>.md</code> extension).</p>
+<p>The <code>fromMarkdownFiles()</code> method is required and tells the collection where to find your markdown files.</p>
+<h2>Views</h2>
+<p>The array key of the collection corresponds to the name of the Blade template that will be used to generate the page content (e.g. <code>posts.blade.php</code> for archive pages and the singular <code>post.blade.php</code> for single entries). However, These can be overidden using the <code>singleView()</code> and <code>collectionView()</code> methods:</p>
+<pre><code class="language-php">'posts' =&gt; MarkdownCollection::create('/blog/{slug}')
+    -&gt;fromMarkdownFiles(__DIR__ . '/content/posts')
+    -&gt;singleView('blog-post')
+    -&gt;collectionView('blog-posts')
+    -&gt;fetchContent(),</code></pre>
+<h2>Sorting</h2>
+<p>Entries can be sorted by some value that exists in the Markdown front matter (e.g. a <code>date</code>) using the <code>sortByFrontMatter()</code> method:</p>
+<pre><code class="language-php">'posts' =&gt; MarkdownCollection::create('/blog/{slug}')
+    -&gt;fromMarkdownFiles(__DIR__ . '/content/posts')
+    -&gt;fetchContent()
     -&gt;sortByFrontMatter('date', 'desc'),</code></pre>
-<p>By default, archive pages will show 10 entries but this can be changed using the <code>perPage</code> method:</p>
-<pre><code class="language-php">'posts' =&gt; (new MarkdownCompiler('/blog/{slug}', __DIR__ . '/content/posts'))
-    -&gt;getContent()
-    -&gt;perPage(20),</code></pre>
+<p>Note: <code>sortByFrontMatter()</code> must be called after <code>fetchContent()</code> for it to work.</p>
+<h2>Pagination</h2>
+<p>Staticus generates paginated archive pages for collections. By default, archive pages will show 10 entries but this can be changed using the <code>perPage()</code> method:</p>
+<pre><code class="language-php">'posts' =&gt; MarkdownCollection::create('/blog/{slug}')
+    -&gt;fromMarkdownFiles(__DIR__ . '/content/posts')
+    -&gt;perPage(20),
+    -&gt;fetchContent(),</code></pre>
 <h2>Markdown files</h2>
-<p>Markdown files should have some YAML front matter that should contain at least a <code>title</code> for the entry:</p>
+<p>Markdown files should have some YAML front matter that should contains at least a <code>title</code> for the entry:</p>
 <pre><code>
 ---
 
@@ -111,6 +125,7 @@ This is the markdown content of the post...</code></pre>
 
     <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/styles/atom-one-dark.min.css">
     <script src="https://unpkg.com/@highlightjs/cdn-assets@11.5.1/highlight.min.js"></script>
+    <script src="https://unpkg.com/highlightjs-blade/dist/blade.min.js"></script>
     <script>
         hljs.highlightAll();
     </script>

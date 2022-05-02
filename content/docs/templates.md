@@ -23,7 +23,7 @@ Collection entries contain the same data but also have the following attributes:
 
 Collection archive pages have a `$pagination` object injected into them:
 
-```php
+```blade
 <ul>
     @foreach ($pagination->items as $post)
         <li><a href="/{{ $post->path }}">{{ $post->title }}</a></li>
@@ -60,6 +60,45 @@ The `$pagination` object has the following attributes:
 * `nextPagePath` - The path for the next page (e.g. `posts/page/2`)
 * `prevPagePath` - The path for the previous page (e.g. `posts/page/8`)
 
-## Config object
+## Staticus object
 
-Every page will also have a `$config` object injected into it that contains the array of data from `config.phg`.
+Every page will also have a `$staticus` object injected into it that can be used to access helpful information.
+
+```php
+// Get the current environment
+$staticus->environment()
+
+// Get config values
+$staticus->config('siteTitle')
+
+// Get content data
+$staticus
+    ->content('posts')
+    ->collection()
+    ->all();
+```
+
+## Assets
+
+Compiled assets can be included in your templates using the `$staticus->asset()` method:
+
+```blade
+<link rel="stylesheet" href="{{ $staticus->asset('assets/main.css') }}">
+```
+
+This method ensures that assets are cache-busted when they have been updated.
+
+## Global data
+
+Any data included in your `config.php` will be globally available to all pages via `$staticus->config()`.
+
+```
+// config.php
+return [
+    'siteTitle' => 'Staticus',
+    // ...
+];
+
+// In pages
+{{ $staticus->config('siteTitle') }}
+```

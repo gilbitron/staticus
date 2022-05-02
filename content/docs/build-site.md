@@ -4,10 +4,10 @@ category: getting-started
 sort: 2
 ---
 
-To build your site run the `build` command from the project root:
+To build your site run the NPM `build` script from the project root:
 
 ```
-./staticus build
+npm run build
 ```
 
 Your static site will be generated in the `/dist` directory.

@@ -8,13 +8,13 @@ Staticus use [Laravel Mix](https://laravel-mix.com/) to compile JS & CSS assets.
 
 To compile your project assets, first install the node dependencies:
 
-```
+```text
 npm install
 ```
 
 Compile your JS and CSS by running:
 
-```
+```text
 npm run dev
 ```
 
@@ -22,7 +22,7 @@ npm run dev
 
 To preview changes as you build your site run the NPM `watch` script:
 
-```
+```text
 npm run watch
 ```
 

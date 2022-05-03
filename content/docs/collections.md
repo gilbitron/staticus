@@ -61,6 +61,17 @@ Staticus generates paginated archive pages for collections. By default, archive 
     ->fetchContent(),
 ```
 
+## No archives
+
+To disable generating archive pages for a collection use the `withoutArchives()` method:
+
+```php
+'posts' => MarkdownCollection::create('/blog/{slug}')
+    ->fromMarkdownFiles(__DIR__ . '/content/posts')
+    ->withoutArchives()
+    ->fetchContent(),
+```
+
 ## Markdown files
 
 Markdown files should have some YAML front matter that should contains at least a `title` for the entry:

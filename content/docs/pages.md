@@ -30,7 +30,7 @@ Additional data can be passed to the Blade template by passing a `frontMatter` a
 'about' => new Page([
     'title' => 'About Me',
     'path'  => 'about',
-    'fontMatter' => [
+    'frontMatter' => [
         'subtitle' => 'An example subtitle...',
     ],
 ]),

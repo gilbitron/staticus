@@ -12,7 +12,7 @@ Every page will have a `$page` object injected into it that contains the informa
 
 * `path` - The path to the page
 * `title` - The title of the page
-* `fontMatter` - An optional array of front matter data for the page
+* `frontMatter` - An optional array of front matter data for the page
 
 Collection entries contain the same data but also have the following attributes:
 

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', $page->title . ' - ' . $staticus->config('siteTitle'))</title>
 
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="{{ $staticus->asset('assets/main.css') }}">
 
     @if ($staticus->environment() === 'production')
@@ -17,7 +18,10 @@
 <body class="dark:bg-gray-900">
     <header
         class="fixed top-0 left-0 w-full h-16 flex items-center justify-between px-6 sm:px-10 border-b border-gray-200 bg-white dark:bg-gray-900 dark:text-white dark:border-gray-700">
-        <a href="/" class="text-2xl font-bold">Staticus</a>
+        <a href="/" class="inline-flex items-center text-2xl font-bold">
+            <img src="/assets/images/logo.svg" alt="Staticus" class="h-6 mr-3">
+            Staticus
+        </a>
         <nav>
             <ul class="flex items-center space-x-6">
                 <li><a href="/docs/installation" class="hover:text-blue-600">Docs</a></li>

@@ -12,6 +12,7 @@ return [
         ]),
         'docs' => MarkdownCollection::create('/docs/{slug}')
             ->fromMarkdownFiles(__DIR__ . '/content/docs')
+            ->withoutArchives()
             ->fetchContent()
             ->sortByFrontMatter('sort', 'asc'),
     ],

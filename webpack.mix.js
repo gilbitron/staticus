@@ -3,6 +3,7 @@ const command = require('node-cmd');
 
 mix
     .setPublicPath('dist')
+    .copyDirectory('assets/images', 'dist/assets/images')
     .postCss('assets/main.css', 'dist/assets', [
         require('tailwindcss'),
     ])

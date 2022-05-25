@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cbd15bee1eaaa671abd184affeba6bcf",
+    "content-hash": "ce998b6af5138cf41e664a1ffd263ebc",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -200,16 +200,16 @@
         },
         {
             "name": "gilbitron/staticus-framework",
-            "version": "0.2.4",
+            "version": "0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gilbitron/staticus-framework.git",
-                "reference": "6c78f66a566fd95615ff456f303260eba0c05670"
+                "reference": "fb09a772a4f6f2b7701f65beeab36f6c9799828b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gilbitron/staticus-framework/zipball/6c78f66a566fd95615ff456f303260eba0c05670",
-                "reference": "6c78f66a566fd95615ff456f303260eba0c05670",
+                "url": "https://api.github.com/repos/gilbitron/staticus-framework/zipball/fb09a772a4f6f2b7701f65beeab36f6c9799828b",
+                "reference": "fb09a772a4f6f2b7701f65beeab36f6c9799828b",
                 "shasum": ""
             },
             "require": {
@@ -248,9 +248,9 @@
             "description": "Staticus Framework",
             "support": {
                 "issues": "https://github.com/gilbitron/staticus-framework/issues",
-                "source": "https://github.com/gilbitron/staticus-framework/tree/0.2.4"
+                "source": "https://github.com/gilbitron/staticus-framework/tree/0.2.5"
             },
-            "time": "2022-05-03T19:39:31+00:00"
+            "time": "2022-05-06T14:41:46+00:00"
         },
         {
             "name": "illuminate/bus",

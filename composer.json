@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=8.0",
-        "gilbitron/staticus-framework": "^0.2.4"
+        "gilbitron/staticus-framework": "^0.2.5"
     },
     "config": {
         "sort-packages": true
